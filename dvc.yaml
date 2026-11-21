@@ -1,0 +1,26 @@
+stages:
+  train:
+    cmd: python -m src.train
+    deps:
+      - src/data_loader.py
+      - src/train.py
+    params:
+      - data.test_size
+      - data.random_state
+      - model.n_estimators
+      - model.max_depth
+      - model.min_samples_split
+      - model.random_state
+    outs:
+      - data/processed/iris_split.npz
+      - models/iris_model.joblib
+
+  evaluate:
+    cmd: python -m src.evaluate
+    deps:
+      - src/evaluate.py
+      - models/iris_model.joblib
+      - data/processed/iris_split.npz
+    metrics:
+      - reports/metrics.json:
+          cache: false

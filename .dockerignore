@@ -1,0 +1,12 @@
+.git
+.venv
+.dist
+__pycache__
+.pytest_cache
+.dvc
+.dvcignore
+mlruns
+data
+reports
+tests
+*.py[cod]
